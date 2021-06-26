@@ -91,6 +91,37 @@
           }
         }
       }
+    },
+    "lightning": {
+      "projectType": "library",
+      "root": "projects/lightning",
+      "sourceRoot": "projects/lightning/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/lightning/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lightning/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/lightning/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lightning/src/test.ts",
+            "tsConfig": "projects/lightning/tsconfig.spec.json",
+            "karmaConfig": "projects/lightning/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "workspace"

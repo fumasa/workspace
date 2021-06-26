@@ -6,21 +6,29 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccountingComponent } from './accounting/accounting.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LightningModule } from 'lightning';
+
+const LIBRARIES = [
+  LightningModule
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AccountingComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ...LIBRARIES
   ],
   providers: [],
   bootstrap: [AppComponent]

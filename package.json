@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "prestart": "npm run build:lib",
     "start": "ng serve",
+    "prebuild": "npm run build:lib",
     "build": "ng build --configuration production",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "build:lib": "npm run build:lightning",
+    "build:lightning": "ng build lightning --configuration production"
   },
   "private": true,
   "dependencies": {
@@ -20,7 +24,9 @@
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
     "@angular/service-worker": "~12.1.0",
+    "d3": "^7.0.0",
     "rxjs": "~6.6.0",
+    "simplex-noise": "^2.4.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
@@ -28,7 +34,9 @@
     "@angular-devkit/build-angular": "~12.1.0",
     "@angular/cli": "~12.1.0",
     "@angular/compiler-cli": "~12.1.0",
+    "@types/d3": "^6.7.4",
     "@types/node": "^12.11.1",
+    "ng-packagr": "^12.1.0-next.0",
     "typescript": "~4.3.2"
   }
 }
