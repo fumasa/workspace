@@ -14,7 +14,8 @@ import { Rect } from './_models/rect';
 })
 export class LightningComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('lightning', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('lightning', { static: true })
+  canvas!: ElementRef<HTMLCanvasElement>;
   public context!: CanvasRenderingContext2D | null;
 
   public centerX: number = 0;
@@ -33,6 +34,8 @@ export class LightningComponent implements OnInit, AfterViewInit {
   public lightning: Lightning = new Lightning();
   public tempLightings: Lightning[][] = [];
 
+  private _requestId: any;
+
   constructor() {
 
   }
@@ -49,7 +52,6 @@ export class LightningComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.context = this.canvas.nativeElement.getContext('2d');
     if (this.context !== null) {
       this.grad = this.context.createRadialGradient(this.centerX, this.centerY, 0, this.centerX, this.centerY, Math.sqrt(this.centerX * this.centerX + this.centerY * this.centerY));
       this.grad.addColorStop(0, 'rgba(0, 0, 0, 0)');
@@ -117,7 +119,7 @@ export class LightningComponent implements OnInit, AfterViewInit {
       this.lightning.update();
       this.lightning.draw(this.context);
       
-      window.requestAnimationFrame(this.loop);
+      this._requestId = requestAnimationFrame(() => this.loop);
     }
   }
 
